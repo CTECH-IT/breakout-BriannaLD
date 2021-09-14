@@ -44,12 +44,17 @@ drawPaddle();
 x += dx;
 y += dy;
 
+//checks to see if ball is going off the page, reversing direction when it does.
 if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
     dx = -dx;
 }
 
-if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+if (y + dy < ballRadius) { //ceiling check
     dy = -dy;
+} else if (y + dy > canvas.height - ballRadius) {
+    alert ("GAME OVER - GET GOOD");
+    document.location.reload();
+    clearInterval(interval); //needed for browser to end the game
 }
 
 //paddle controls
@@ -89,5 +94,5 @@ function keyUpHandler(e) {
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-setInterval(draw, 10);
+let interval = setInterval(draw, 10);
 
