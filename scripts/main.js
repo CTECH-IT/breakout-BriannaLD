@@ -24,6 +24,8 @@ let brickPadding = 10;
 let brickOffsetTop = 30;
 let brickOffsetLeft = 30;
 
+let score = 0;
+
 //set up a 2-dimensional array for the bricks
 let bricks = [];
 for (let c=0; c < brickColumnCount; c++) {
@@ -76,6 +78,7 @@ drawBricks();
 drawBall();
 drawPaddle();
 collisionDetection();
+drawScore();
 
 //change the x and y values for the ball
 x += dx;
@@ -132,10 +135,22 @@ function collisionDetection() {
             if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight){
                 dy = -dy;
                 b.show = false;
+                score++;
+                if (score ==brickRowCount*brickColumnCount) {
+                    alert ("I guess you won. Not bad.");
+                    document.location.reload();
+                    clearInterval(interval); //Needed for browser to end game
+                }
                 }
             }
         }
     }
+}
+
+function drawScore(){
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "0095DD"
+    ctx.fillText("Score: " + score, 8, 20);
 }
 
 function keyUpHandler(e) {
