@@ -26,6 +26,8 @@ let brickOffsetLeft = 30;
 
 let score = 0;
 
+let lives = 3;
+
 //set up a 2-dimensional array for the bricks
 let bricks = [];
 for (let c=0; c < brickColumnCount; c++) {
@@ -79,6 +81,7 @@ drawBall();
 drawPaddle();
 collisionDetection();
 drawScore();
+drawLives();
 
 //change the x and y values for the ball
 x += dx;
@@ -96,9 +99,19 @@ if (y + dy < ballRadius) { //ceiling check
     if (x > paddleX && x < paddleX + paddleWidth) { //paddle check
         dy = -dy;
     } else { //hit the floor
+        if (lives > 1) {
+                x = canvas.width/2;
+                y = canvas.height-30;
+                dx = 2;
+                dy = -2;
+                paddleX = (canvas.width-paddleWidth)/2;
+                lives--;
+        }
+        else {
     alert ("GAME OVER - GET GOOD");
     document.location.reload();
     clearInterval(interval); //needed for browser to end the game
+        }
     }
 }
 
@@ -147,9 +160,15 @@ function collisionDetection() {
     }
 }
 
+function drawLives(){
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "0095DD";
+    ctx.fillText("|  Lives: " + lives, 75, 20)
+}
+
 function drawScore(){
     ctx.font = "16px Arial";
-    ctx.fillStyle = "0095DD"
+    ctx.fillStyle = "0095DD";
     ctx.fillText("Score: " + score, 8, 20);
 }
 
