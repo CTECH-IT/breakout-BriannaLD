@@ -162,8 +162,23 @@ function keyUpHandler(e) {
     }
 }
 
+function mouseMoveHandler(e) {
+    let relativeX = e.clientX - canvas.offsetLeft;
+    if (relativeX > 0 && relativeX < canvas.width) {
+        paddleX = relativeX - paddleWidth / 2;
+        if (paddleX < 0){
+            paddleX = 0;
+        }
+        if (paddleX + paddleWidth > canvas.width){
+            paddleX = canvas.width - paddleWidth;
+        }
+    }
+}
+
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+
+document.addEventListener("mousemove", mouseMoveHandler, false);
 
 let interval = setInterval(draw, 10);
 
