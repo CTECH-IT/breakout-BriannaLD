@@ -79,6 +79,8 @@ function drawBricks () {
     }
 }
 
+
+
 function draw() {
 //clear the canvas 
 ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -89,6 +91,22 @@ drawPaddle();
 collisionDetection();
 drawScore();
 drawLives();
+
+//Messages for Each lost life
+if (lives == 2){
+
+    let warningMessage1 = "Hey, be careful!";
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "FFFFF0";
+    ctx.fillText(warningMessage1, 225, 20) ;
+}
+if (lives == 1){
+    let warningMessage2 = "Getting a little close there, buddy...";
+    warningMessage1 = warningMessage2
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "FFFFF0";
+    ctx.fillText(warningMessage2, 225, 20) ;
+}
 
 //change the x and y values for the ball
 x += dx;
@@ -207,4 +225,7 @@ document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
 
 let interval = setInterval(draw, 10);
+
+
+
 
