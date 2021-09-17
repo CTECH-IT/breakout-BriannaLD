@@ -41,7 +41,10 @@ function drawBall() {
 //draw the ball
 ctx.beginPath();
 ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-ctx.fillStyle = "#FFFFF0";
+if (lives == 3) {ctx.fillStyle = "#FFFFF0";}
+if (lives == 2) {ctx.fillStyle = "#ff9999";}
+if (lives == 1) {ctx.fillStyle = "#ff355e";}
+if (lives == 0) {ctx.fillStyle = "ff355e";}
 ctx.fill();
 ctx.closePath;
 }
