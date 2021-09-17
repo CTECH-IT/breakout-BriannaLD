@@ -49,7 +49,7 @@ ctx.closePath;
 function drawPaddle () {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = "#FFE4B5";
+    ctx.fillStyle = "#FFFFF0";
     ctx.fill();
     ctx.closePath();
 }
@@ -64,7 +64,11 @@ function drawBricks () {
             bricks[c][r].y = brickY;
             ctx.beginPath();
             ctx.rect(brickX, brickY, brickWidth, brickHeight);
-            ctx.fillStyle = "#FFE4B5";
+            if (c == 0) {ctx.fillStyle = "#F08080";}
+            if (c == 1) {ctx.fillStyle = "#FFA07A";}
+            if (c == 2) {ctx.fillStyle = "#FFE4B5";}
+            if (c == 3) {ctx.fillStyle = "#98FB98";}
+            if (c == 4) {ctx.fillStyle = "#E0FFFF";}
             ctx.fill();
             ctx.closePath();
             }
@@ -162,13 +166,13 @@ function collisionDetection() {
 
 function drawLives(){
     ctx.font = "16px Arial";
-    ctx.fillStyle = "0095DD";
+    ctx.fillStyle = "FFFFF0";
     ctx.fillText("  |   Lives: " + lives, 75, 20)
 }
 
 function drawScore(){
     ctx.font = "16px Arial";
-    ctx.fillStyle = "0095DD";
+    ctx.fillStyle = "FFFFF0";
     ctx.fillText("Score: " + score, 8, 20);
 }
 
